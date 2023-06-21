@@ -1,0 +1,96 @@
+package com.example.CDP.Entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class Document {
+	@Id
+    @Column(name = "document_id")
+    private String documentId;
+    //@Id
+   //@Column(name = "customer_id")
+  //private String customerId;
+    private String type;
+	private String dateOfIssue;
+	private String dateOfExpiry;
+	private String issueingAurthority;
+	    @ManyToOne
+	    @JoinColumn(name = "customer_id")
+	    private Customer customer;
+		public Document() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+		public Document( String documentId, String type, String dateOfIssue, String dateOfExpiry,
+				String issueingAurthority, Customer customer) {
+			super();
+			//String customerId,
+           //this.customerId = customerId;
+			this.documentId = documentId;
+			this.type = type;
+			this.dateOfIssue = dateOfIssue;
+			this.dateOfExpiry = dateOfExpiry;
+			this.issueingAurthority = issueingAurthority;
+			this.customer = customer;
+		}
+
+//		public String getCustomerId() {
+//			return customerId;
+//		}
+//
+//		public void setCustomerId(String customerId) {
+//			this.customerId = customerId;
+//		}
+        public String getDocumentId() {
+			return documentId;
+		}
+		public void setDocumentId(String documentId) {
+			this.documentId = documentId;
+        }
+		public String getType() {
+			return type;
+		}
+		public void setType(String type) {
+			this.type = type;
+		}
+		public String getDateOfIssue() {
+			return dateOfIssue;
+		}
+		public void setDateOfIssue(String dateOfIssue) {
+			this.dateOfIssue = dateOfIssue;
+		}
+		public String getDateOfExpiry() {
+			return dateOfExpiry;
+		}
+		public void setDateOfExpiry(String dateOfExpiry) {
+			this.dateOfExpiry = dateOfExpiry;
+		}
+		public String getIssueingAurthority() {
+			return issueingAurthority;
+		}
+		public void setIssueingAurthority(String issueingAurthority) {
+			this.issueingAurthority = issueingAurthority;
+		}
+		public Customer getCustomer() {
+			return customer;
+		}
+		public void setCustomer(Customer customer) {
+			this.customer = customer;
+		}
+		@Override
+		public String toString() {
+			return "Document [documentId=" + documentId + ", type=" + type + ", dateOfIssue=" + dateOfIssue
+					+ ", dateOfExpiry=" + dateOfExpiry + ", issueingAurthority=" + issueingAurthority + ", customer="
+					+ customer + "]";
+		}
+//		@Override
+//		public String toString() {
+//			return "Document [customerId=" + customerId + ", documentId=" + documentId + ", type=" + type
+//					+ ", dateOfIssue=" + dateOfIssue + ", dateOfExpiry=" + dateOfExpiry + ", issueingAurthority="
+//					+ issueingAurthority + ", customer=" + customer + "]";
+//		}
+}

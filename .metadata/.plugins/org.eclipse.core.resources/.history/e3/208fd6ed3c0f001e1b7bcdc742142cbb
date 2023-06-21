@@ -1,0 +1,8 @@
+package com.example.CDP.Entity;
+
+import java.io.Serializable;
+
+public class DocumentId implements Serializable {
+    private String customerId;
+    private String documentId;
+}

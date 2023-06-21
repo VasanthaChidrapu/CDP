@@ -1,0 +1,36 @@
+package com.example.CDP.ServiceImplimentation;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.CDP.Entity.Customer;
+import com.example.CDP.Entity.Document;
+import com.example.CDP.Repository.CustomerRepository;
+import com.example.CDP.Repository.DocumentRepository;
+import com.example.CDP.ServiceInterface.DocumentInterface;
+
+@Service
+public class DocumentImplementation implements DocumentInterface{
+	@Autowired
+	private  CustomerRepository customerRepository;
+	@Autowired
+	private DocumentRepository documentRepository;
+    @Override
+    public Document createDocument(String customerId, Document documentRequest) {
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new RuntimeException("Customer not found with ID: " + customerId));
+        
+        Document document = new Document();
+        //document.setCustomer(customer);
+        // Set other document properties from documentRequest
+        document.setDocumentId(documentRequest.getDocumentId());
+        document.setType(documentRequest.getType());
+        document.setDateOfIssue(documentRequest.getDateOfIssue());
+        document.setDateOfExpiry(documentRequest.getDateOfExpiry());
+        document.setIssuingAuthority(documentRequest.getIssuingAuthority());
+        document.setCustomer(customer);
+        
+        Document createdDocument = documentRepository.save(document);
+        return createdDocument;
+    }
+}

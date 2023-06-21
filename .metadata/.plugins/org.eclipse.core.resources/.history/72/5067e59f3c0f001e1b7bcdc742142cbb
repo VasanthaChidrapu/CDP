@@ -1,0 +1,5 @@
+package com.example.CDP.Entity;
+
+public interface DocumentId {
+
+}
